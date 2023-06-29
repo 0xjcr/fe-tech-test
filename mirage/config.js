@@ -11,6 +11,7 @@ export default function () {
             name: 'Green Tea',
             price: 3.11,
             code: 'GR1',
+            image: 'images/green-tea.png',
           },
         },
         {
@@ -20,6 +21,7 @@ export default function () {
             name: 'Strawberries',
             price: 5.00,
             code: 'SR1',
+            image: 'images/strawberries.png',
           },
         },
         {
@@ -29,6 +31,7 @@ export default function () {
             name: 'Coffee',
             price: 11.23,
             code: 'CF1',
+            image: 'images/coffee.png',
           },
         },
       ],

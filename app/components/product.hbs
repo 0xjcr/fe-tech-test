@@ -1,7 +1,10 @@
-<div class="p-5 mx-auto my-4 border rounded-lg border-cyan-950">
-  <p class="my-2">
-    <span>Product name: {{@product.name}}</span>
-    <span>Product price: {{format-currency @product.price}}</span>
+<div class="h-[363px] w-[352px]  mx-auto my-4 border rounded-lg border-cyan-950">
+  <div class="h-[255px] w-[352px] overflow-hidden">
+  <img class="object-center rounded-t-lg roundedobject-cover" src="{{@product.image}}" alt="{{@product.name}}">
+</div>
+  <p class="my-2 ">
+    <div>{{@product.name}}</div>
+    <div>{{format-currency @product.price}}</div>
   </p>
   <p class="my-2">In Cart: {{this.quantity}}</p>
   <button

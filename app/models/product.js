@@ -4,5 +4,5 @@ export default class ProductModel extends Model {
   @attr('string') name;
   @attr('number', { precision: 2 }) price;
   @attr('string') code;
-
+  @attr('string') image;
 }
