@@ -5,4 +5,5 @@ export default class ProductModel extends Model {
   @attr('number', { precision: 2 }) price;
   @attr('string') code;
   @attr('string') image;
+  @attr('string') promotion;
 }

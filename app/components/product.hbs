@@ -1,17 +1,27 @@
-<div class="h-[363px] w-[352px]  mx-auto my-4 border rounded-lg border-cyan-950">
-  <div class="h-[255px] w-[352px] overflow-hidden">
-  <img class="object-center rounded-t-lg roundedobject-cover" src="{{@product.image}}" alt="{{@product.name}}">
+<div class="max-h-[363px] w-[352px] mx-auto my-4 border rounded-lg border-gray-100 bg-white shadow-sm">
+  <div class="relative w-[352px]">
+  <img class="object-cover object-center rounded-t-lg" src="{{@product.image}}" alt="{{@product.name}}">
+  {{!-- offer to be created as separate component --}}
+  <div class="absolute top-0 right-0 p-4">
+  <div class="flex items-center justify-center h-8 p-2 text-xs font-medium text-teal-900 bg-teal-100 rounded-lg shadow-sm whitespace-nowrap">{{@product.promotion}}</div>
+  </div>
 </div>
-  <p class="my-2 ">
-    <div>{{@product.name}}</div>
-    <div>{{format-currency @product.price}}</div>
-  </p>
-  <p class="my-2">In Cart: {{this.quantity}}</p>
+<div class="p-4 h-[103px] w-[352px] rounded-b-lg relative">
+<div class="p-4 h-[71px] w-[128px] relative">
+    <div class="absolute top-0 left-0 text-xl font-bold leading-7 text-gray-800">{{@product.name}}</div>
+    <div class="absolute bottom-0 left-0 text-xl font-normal leading-7 text-gray-800">{{format-currency @product.price}}</div>
+  </div>
+  {{!-- <p class="my-2">In Cart: {{this.quantity}}</p> --}}
+  <div class="absolute bottom-0 right-0 p-4">
+  {{!-- button to be added later as component --}}
   <button
     type="button"
-    class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+    class="flex items-center justify-center font-bold rounded-lg text-violet-700 bg-violet-50 hover:bg-violet-700 hover:text-white w-[104px] h-[40px] whitespace-nowrap shadow-sm"
     {{on "click" this.addToCart}}
   >
     Add to cart
   </button>
+  </div>
+</div>
+  
 </div>
