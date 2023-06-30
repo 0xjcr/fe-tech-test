@@ -13,16 +13,10 @@
     <div class="absolute bottom-0 left-0 text-xl font-normal leading-7 text-gray-800">{{format-currency @product.price}}</div>
   </div>
   {{!-- <p class="my-2">In Cart: {{this.quantity}}</p> --}}
-  <div class="absolute bottom-0 right-0 p-4">
-  {{!-- button to be added later as component --}}
-  <button
-    type="button"
-    class="flex items-center justify-center font-bold rounded-lg text-violet-700 bg-violet-50 hover:bg-violet-700 hover:text-white w-[104px] h-[40px] whitespace-nowrap shadow-sm"
-    {{on "click" this.addToCart}}
-  >
-    Add to cart
-  </button>
-  </div>
+
+
+<AddToCart @addToCart={{this.addToCart}}/>
+  
 </div>
   
 </div>
