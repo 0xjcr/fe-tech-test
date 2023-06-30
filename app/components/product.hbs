@@ -1,10 +1,11 @@
 <div class="h-[363px] w-[352px] mx-auto border rounded-lg border-gray-100 bg-white shadow-sm">
   <div class="relative w-[352px]">
   <img class="object-cover object-center rounded-t-lg" src="{{@product.image}}" alt="{{@product.name}}">
-  {{!-- offer to be created as separate component --}}
-  <div class="absolute top-0 right-0 p-4">
-  <div class="flex items-center justify-center h-8 p-2 text-xs font-medium text-teal-900 bg-teal-100 rounded-lg shadow-sm whitespace-nowrap">{{@product.promotion}}</div>
-  </div>
+  
+  
+  <Offer @product={{@product}}/>
+  
+  
 </div>
 <div class="p-4 h-[103px] w-[352px] rounded-b-lg relative">
 <div class="p-4 h-[71px] w-[128px] relative">

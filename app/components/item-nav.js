@@ -3,7 +3,6 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class ItemNavComponent extends Component {
- 
   options = [
     { label: 'Groceries', route: 'products' },
     { label: 'Wine', route: 'wine' },
@@ -11,10 +10,10 @@ export default class ItemNavComponent extends Component {
     { label: 'FX', route: 'fx' },
   ];
 
- @tracked selectedOption = this.options[0];
+  @tracked selectedOption = this.options[0];
 
- @action
- isSelected(option) {
+  @action
+  isSelected(option) {
     return option.label === this.selectedOption.label;
   }
 
