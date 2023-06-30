@@ -1,0 +1,30 @@
+<nav class="flex space-x-8 text-gray-800">
+<LinkTo @route="products">
+<h1>Groceries</h1>
+</LinkTo>
+<LinkTo @route="wine">
+<h1>Wine</h1>
+</LinkTo>
+<LinkTo @route="clothes">
+<h1>Clothes</h1>
+</LinkTo>    
+<LinkTo @route="fx">
+<h1>FX</h1>
+</LinkTo>   
+</nav>
+
+
+{{!-- <ul class="flex w-10 h-10 bg-green-200 item-nav">
+  {{#each this.options as |option|}}
+    <li
+      class="{{if (eq option this.selectedOption) 'selected'}}"
+      {{on "click" this.selectOption option}}
+    >
+      {{option.label}}
+    </li>
+  {{/each}}
+</ul> --}}
+
+    
+
+

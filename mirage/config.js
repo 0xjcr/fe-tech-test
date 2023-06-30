@@ -9,7 +9,7 @@ export default function () {
           id: 'SR1',
           attributes: {
             name: 'Strawberries',
-            price: 5.00,
+            price: 5.0,
             code: 'SR1',
             image: 'images/strawberries.png',
             promotion: '3 for £13.50',
