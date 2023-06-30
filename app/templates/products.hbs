@@ -1,4 +1,12 @@
 {{page-title "Products"}}
-{{#each this.model as |product|}}
-<Product @product={{product}} />
-{{/each}}
+<div class="absolute left-[136px] top-[120px]">NAV</div>
+<div class="absolute left-[136px] top-[224px]">Groceries</div>
+<div class="absolute left-[136px] top-[224px] my-12">Special FX offers only the finest organic produce.</div>
+<div class="relative w-[1440px]">
+<div class="absolute left-[136px] top-[260px] grid grid-cols-3 gap-x-14">
+  {{#each this.model as |product|}}
+    <Product @product={{product}} />
+  {{/each}}
+</div>  
+</div>  
+
