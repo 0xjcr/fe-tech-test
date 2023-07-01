@@ -15,8 +15,19 @@
   {{!-- <p class="my-2">In Cart: {{this.quantity}}</p> --}}
 
 
-<AddToCart @addToCart={{this.addToCart}}/>
-  
+{{!-- <AddToCart @addToCart={{this.addToCart}}/>
+
+<QuantitySelector /> --}}
+
+
+{{#if (eq this.quantity 0)}}
+  <AddToCart @addToCart={{this.addToCart}}/>
+{{else}}
+  <QuantitySelector @quantity={{this.quantity}} @incrementQuantity={{this.incrementQuantity}} @decrementQuantity={{this.decrementQuantity}}/>
+{{/if}}
+
+
+
 </div>
   
 </div>

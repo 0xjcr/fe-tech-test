@@ -9,4 +9,15 @@ export default class ProductComponent extends Component {
   addToCart() {
     this.quantity++;
   }
+
+  @action
+  incrementQuantity() {
+    this.quantity++;
+  }
+
+  @action
+  decrementQuantity() {
+    this.quantity--;
+    if (this.quantity < 0) this.quantity = 0;
+  }
 }

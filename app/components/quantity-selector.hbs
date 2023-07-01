@@ -1,0 +1,14 @@
+<div class="absolute bottom-0 right-0 p-4">
+  <div
+    class="flex items-center justify-between font-bold rounded-lg text-violet-700 bg-violet-50 w-[117px] h-[40px] whitespace-nowrap shadow-sm px-2"
+    
+  >
+  <button type="button" class="w-6 h-6">
+   <HeroIcon class="w-6 h-6 text-violet-700" @icon="trash" @type="outline" />
+   </button>
+    <span class="mx-2">{{@quantity}}</span>
+    <button type="button" class="w-6 h-6" {{on "click" this.incrementQuantity}}>
+    <HeroIcon class="w-6 h-6 text-violet-700" @icon="plus" @type="outline" />
+    </button>
+  </div>
+</div>
