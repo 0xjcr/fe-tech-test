@@ -2,14 +2,13 @@ import { A } from '@ember/array';
 import Service from '@ember/service';
 
 export default class CartService extends Service {
-  products = A([]);
+  items = A([]);
 
-  add(product) {
-    this.products.pushObject(product);
+  add(item) {
+    this.items.pushObject(item);
   }
 
-  remove(product) {
-    this.products.removeObject(product);
+  remove(item) {
+    this.items.removeObject(item);
   }
-
 }

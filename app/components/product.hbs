@@ -2,8 +2,10 @@
   <div class="relative w-[352px]">
   <img class="object-cover object-center rounded-t-lg" src="{{@product.image}}" alt="{{@product.name}}">
   
+  <div class="absolute top-0 right-0 p-4">
+  <Offer @product={{@product}}/>  
+  </div>
   
-  <Offer @product={{@product}}/>
   
   
 </div>
@@ -19,13 +21,13 @@
 
 <QuantitySelector /> --}}
 
-
+<div class="absolute bottom-0 right-0 p-4">
 {{#if (eq this.quantity 0)}}
   <AddToCart @addToCart={{this.addToCart}}/>
 {{else}}
   <QuantitySelector @quantity={{this.quantity}} @incrementQuantity={{this.incrementQuantity}} @decrementQuantity={{this.decrementQuantity}}/>
 {{/if}}
-
+</div>
 
 
 </div>

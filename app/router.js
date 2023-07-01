@@ -11,4 +11,5 @@ Router.map(function () {
   this.route('wine');
   this.route('clothes');
   this.route('fx');
+  this.route('shopping-cart');
 });
