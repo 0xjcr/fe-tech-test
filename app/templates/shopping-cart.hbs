@@ -1,3 +1,5 @@
+{{page-title "Shopping Cart"}}
+
 <div class="flex items-center absolute w-[183px] h-[40px] top-[120px] left-[136px] justify-center px-2 text-base leading-6 font-normal">
     <HeroIcon class="w-6 h-6 text-gray-800" @icon="chevron-left" @type="outline"/>Continue shopping
 </div>
@@ -7,30 +9,29 @@
 <div class="absolute left-[136px] top-[224px] text-4xl leading-10 font-medium text-gray-800">Shopping Cart</div>
 <div class="absolute left-[136px] top-[224px] my-12 text-xl leading-7 font-normal text-gray-800">You have {4} items in your cart.</div>
 
-{{!-- quantity selector card component --}}
 
-<div class="absolute top-[332px] left-[136px]">
-    <CartCard/>
-    {{!-- <div class="w-[720px] h-[184px] bg-white rounded-lg border border-gray-100 shadow-sm">
 
-    <div class="w-[208px] h-[152px] bg-green-300 rounded-lg absolute top-4 left-4"></div>
+<div class="absolute top-[332px] left-[136px] grid grid-cols-3 gap-x-14">
     
-    <div class="absolute left-[256px] top-[19px] bg-blue-300 h-[149px] w-[448px]">
-    <div class="flex justify-between">
-  <div class="text-xl font-bold leading-7 text-gray-800">Product Name</div>
-  <div class="pr-2 text-xl font-normal leading-7 text-gray-800">price</div>
-</div>   
+
+
     
-    <div class="pt-2">
-    <Offer/>
-    </div>
-    <div class="absolute bottom-0"> 
-    <QuantitySelector/> 
-    </div> 
-    </div>
-        
-    </div> --}}
+<CartCard/>
+    
+
+
+
+    
+{{#each this.cart.products as |product|}}
+  <CartCard @product={{product}} @quantity={{product.quantity}} @incrementQuantity={{this.incrementQuantity}} @decrementQuantity={{this.decrementQuantity}} />
+{{/each}}
+
+
+
+
+
+
 </div>
 
-{{!-- end component --}}
+
 
