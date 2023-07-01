@@ -7,6 +7,10 @@ export default class CartCardComponent extends Component {
 
   get quantity() {
     
+    if (!this.args.product) {
+        return 0;
+      }
+
     let cartItem = this.cart.items.find(item => item.product.id === this.args.product.id);
 
     return cartItem ? cartItem.quantity : 0;
