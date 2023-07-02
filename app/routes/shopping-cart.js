@@ -5,6 +5,9 @@ export default class ShoppingCartRoute extends Route {
   @service cart;
 
   model() {
-    return this.cart.products;
+    return {
+      totalItems: this.cart.totalItems,
+      products: this.cart.products
+    };
   }
 }

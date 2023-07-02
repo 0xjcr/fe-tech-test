@@ -8,7 +8,7 @@
 
 
 <div class="absolute left-[136px] top-[224px] text-4xl leading-10 font-medium text-gray-800">Shopping Cart</div>
-<div class="absolute left-[136px] top-[224px] my-12 text-xl leading-7 font-normal text-gray-800">You have {{this.cart.totalItems}} items in your cart.</div>
+<div class="absolute left-[136px] top-[224px] my-12 text-xl leading-7 font-normal text-gray-800">You have {{this.model.totalItems}} items in your cart.</div>
 
 
 <div class="absolute top-[332px] left-[136px] grid grid-cols-3 gap-x-14">
@@ -16,9 +16,14 @@
 <CartCard/>
 
       
-{{!-- {{#each this.cart.products as |product|}}
-  <CartCard @product={{product}} @quantity={{product.quantity}} @incrementQuantity={{this.incrementQuantity}} @decrementQuantity={{this.decrementQuantity}} />
-{{/each}} --}}
+{{#each this.model.products as |product|}}
+    <CartCard
+      @product={{product}}
+      @quantity={{this.quantity}}
+      @incrementQuantity={{this.incrementQuantity}}
+      @decrementQuantity={{this.decrementQuantity}}
+    />
+  {{/each}}
 
 </div>
 

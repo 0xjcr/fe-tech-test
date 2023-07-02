@@ -6,12 +6,13 @@ export default class CartCardComponent extends Component {
   @service cart;
 
   get quantity() {
-    
     if (!this.args.product) {
-        return 0;
-      }
+      return 0;
+    }
 
-    let cartItem = this.cart.items.find(item => item.product.id === this.args.product.id);
+    let cartItem = this.cart.items.find(
+      (item) => item.product.id === this.args.product.id
+    );
 
     return cartItem ? cartItem.quantity : 0;
   }

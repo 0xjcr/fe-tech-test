@@ -60,11 +60,6 @@
 //   }
 // }
 
-
-
-
-
-
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
@@ -101,23 +96,23 @@ export default class CartService extends Service {
       price: product.price,
       code: product.code,
       image: product.image,
-      promotion: product.promotion
+      promotion: product.promotion,
     };
-  
-    let cartItem = this.items.find(item => item.product.id === product.id);
-  
+
+    let cartItem = this.items.find((item) => item.product.id === product.id);
+
     if (cartItem) {
       cartItem.quantity++;
     } else {
       this.items.push({ product: simplifiedProduct, quantity: 1 });
     }
-  
+
     this.logCartContents();
     this.saveCart();
   }
 
   remove(product) {
-    let cartItem = this.items.find(item => item.product.id === product.id);
+    let cartItem = this.items.find((item) => item.product.id === product.id);
 
     if (cartItem) {
       if (cartItem.quantity > 1) {
@@ -135,7 +130,7 @@ export default class CartService extends Service {
   }
 
   incrementQuantity(product) {
-    let cartItem = this.items.find(item => item.product.id === product.id);
+    let cartItem = this.items.find((item) => item.product.id === product.id);
     if (cartItem) {
       cartItem.quantity++;
     }
@@ -145,7 +140,7 @@ export default class CartService extends Service {
   }
 
   decrementQuantity(product) {
-    let cartItem = this.items.find(item => item.product.id === product.id);
+    let cartItem = this.items.find((item) => item.product.id === product.id);
     if (cartItem && cartItem.quantity > 1) {
       cartItem.quantity--;
     }
@@ -155,7 +150,7 @@ export default class CartService extends Service {
   }
 
   getItemQuantity(product) {
-    let cartItem = this.items.find(item => item.product.id === product.id);
+    let cartItem = this.items.find((item) => item.product.id === product.id);
     return cartItem ? cartItem.quantity : 0;
   }
 
@@ -164,6 +159,9 @@ export default class CartService extends Service {
   }
 
   get totalAmount() {
-    return this.items.reduce((total, item) => total + (item.quantity * item.product.price), 0);
+    return this.items.reduce(
+      (total, item) => total + item.quantity * item.product.price,
+      0
+    );
   }
 }
