@@ -28,7 +28,10 @@
 
 <div class="absolute top-[332px] left-[904px]">
 
-<CartSummary/>    
+<CartSummary
+  @totalPayable={{this.cart.totalPayable}}
+  @subtotal={{this.cart.subtotal}}
+  @totalDiscount={{this.cart.totalDiscount}}/>    
     
 </div>
 

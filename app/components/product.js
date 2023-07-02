@@ -4,7 +4,6 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class ProductComponent extends Component {
-
   @tracked quantity;
   @service cart;
 
@@ -12,7 +11,6 @@ export default class ProductComponent extends Component {
     super(...arguments);
     this.quantity = this.cart.getItemQuantity(this.args.product);
   }
-
 
   @action
   addToCart() {
@@ -31,5 +29,4 @@ export default class ProductComponent extends Component {
     this.cart.decrementQuantity(this.args.product);
     this.quantity = this.cart.getItemQuantity(this.args.product);
   }
-
 }
