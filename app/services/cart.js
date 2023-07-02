@@ -7,6 +7,7 @@ const CART_STORAGE_KEY = 'cartItems';
 
 export default class CartService extends Service {
   @tracked items = [];
+  @tracked shippingCost = 0;
 
   constructor() {
     super(...arguments);
@@ -108,7 +109,12 @@ incrementQuantity(product) {
   decrementQuantity(product) {
     let cartItem = this.items.find((item) => item.product.id === product.id);
     if (cartItem && cartItem.quantity > 0) {
-      cartItem.quantity--;
+      if (product.code === 'GR1') {
+        // Decrement by 2 for Green Tea
+        cartItem.quantity -= 2;
+      } else {
+        cartItem.quantity--;
+      }
     }
 
     if (cartItem.quantity === 0) {
@@ -133,27 +139,36 @@ incrementQuantity(product) {
     return this.items.reduce((total, item) => total + item.quantity, 0);
   }
 
- 
-  get totalAmount() {
-    
-return this.items.reduce((total, item) => {
-        let itemPrice = item.product.price;
-    
-        if (item.product.code === 'GR1') {
-          // Buy 1 get 1 free for Green Tea
-          itemPrice = item.quantity % 2 === 0 ? item.product.price / 2 : item.product.price;
-        } else if (item.product.code === 'SR1' && item.quantity >= 3) {
-          // Price drop to 4.50 for 3 or more Strawberries
-          itemPrice = 4.50;
-        } else if (item.product.code === 'CF1' && item.quantity >= 3) {
-          // Price drop to 2/3 of the original price for 3 or more Coffees
-          itemPrice = (2 / 3) * item.product.price;
-        }
-    
-        return total + item.quantity * itemPrice;
-      }, 0);
-
+ get subtotal() {
+    return this.items.reduce((total, item) => {
+      const itemPrice = item.product.price;
+      return total + item.quantity * itemPrice;
+    }, 0);
   }
 
+  get totalDiscount() {
+    return this.items.reduce((total, item) => {
+      let itemDiscount = 0;
+
+      if (item.product.code === 'GR1') {
+        // Discount for Green Tea
+        const greenTeaCount = Math.floor(item.quantity / 2);
+        itemDiscount = greenTeaCount * item.product.price;
+      } else if (item.product.code === 'SR1' && item.quantity >= 3) {
+        // Discount for Strawberries
+        itemDiscount = 0.50 * item.quantity;
+      } else if (item.product.code === 'CF1' && item.quantity >= 3) {
+        // Discount for Coffees
+        itemDiscount = 3.743 * item.quantity;
+      }
+
+      return total + itemDiscount;
+    }, 0);
+  }
+
+  get totalPayable() {
+    const shippingCost = 0;
+    return this.subtotal - this.totalDiscount + shippingCost;
+  }
 
 }
