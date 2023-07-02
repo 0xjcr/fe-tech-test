@@ -1,10 +1,16 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class CartCardComponent extends Component {
+  @tracked quantity;  
   @service cart;
   
+  constructor() {
+    super(...arguments);
+    this.quantity = this.cart.getItemQuantity(this.args.product);
+  }
 
   get quantity() {
     if (!this.args.product) {
@@ -21,11 +27,13 @@ export default class CartCardComponent extends Component {
   @action
   incrementQuantity() {
     this.cart.incrementQuantity(this.args.product);
+    this.quantity++;
   }
 
   @action
   decrementQuantity() {
     this.cart.decrementQuantity(this.args.product);
+    this.quantity--;
   }
 
 }

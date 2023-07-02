@@ -2,6 +2,7 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 
+
 const CART_STORAGE_KEY = 'cartItems';
 
 export default class CartService extends Service {
@@ -12,16 +13,17 @@ export default class CartService extends Service {
     this.loadCart();
   }
 
-  logCartContents() {
-    console.log('Current cart contents:', this.items);
-  }
-
+  
   loadCart() {
     const cartItems = localStorage.getItem(CART_STORAGE_KEY);
 
     if (cartItems) {
       this.items = JSON.parse(cartItems);
     }
+  }
+
+  logCartContents() {
+    console.log('Current cart contents:', this.items);
   }
 
   saveCart() {
@@ -105,6 +107,7 @@ export default class CartService extends Service {
     return this.items.reduce((total, item) => total + item.quantity, 0);
   }
 
+ 
   get totalAmount() {
     return this.items.reduce(
       (total, item) => total + item.quantity * item.product.price,

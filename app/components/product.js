@@ -4,8 +4,15 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class ProductComponent extends Component {
-  @tracked quantity = 0;
+
+  @tracked quantity;
   @service cart;
+
+  constructor() {
+    super(...arguments);
+    this.quantity = this.cart.getItemQuantity(this.args.product);
+  }
+
 
   @action
   addToCart() {
@@ -21,8 +28,8 @@ export default class ProductComponent extends Component {
 
   @action
   decrementQuantity() {
-    this.quantity--;
-    if (this.quantity < 0) this.quantity = 0;
-    if (this.quantity === 0) this.cart.remove(this.args.product);
+    this.cart.decrementQuantity(this.args.product);
+    this.quantity = this.cart.getItemQuantity(this.args.product);
   }
+
 }
