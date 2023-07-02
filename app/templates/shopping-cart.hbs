@@ -1,13 +1,14 @@
 {{page-title "Shopping Cart"}}
 
+<LinkTo @route="products">
 <div class="flex items-center absolute w-[183px] h-[40px] top-[120px] left-[136px] justify-start text-base leading-6 font-normal">
     <HeroIcon class="w-6 h-6 mr-2 text-gray-800" @icon="chevron-left" @type="outline"/>Continue shopping
 </div>
-
+</LinkTo>
 
 
 <div class="absolute left-[136px] top-[224px] text-4xl leading-10 font-medium text-gray-800">Shopping Cart</div>
-<div class="absolute left-[136px] top-[224px] my-12 text-xl leading-7 font-normal text-gray-800">You have {4} items in your cart.</div>
+<div class="absolute left-[136px] top-[224px] my-12 text-xl leading-7 font-normal text-gray-800">You have {{this.cart.totalItems}} items in your cart.</div>
 
 
 <div class="absolute top-[332px] left-[136px] grid grid-cols-3 gap-x-14">

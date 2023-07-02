@@ -5,9 +5,9 @@ import { action } from '@ember/object';
 export default class ItemNavComponent extends Component {
   options = [
     { label: 'Groceries', route: 'products' },
-    { label: 'Wine', route: 'wine' },
-    { label: 'Clothes', route: 'clothes' },
-    { label: 'FX', route: 'fx' },
+    { label: 'Wine', route: 'products' },
+    { label: 'Clothes', route: 'products' },
+    { label: 'FX', route: 'products' },
   ];
 
   @tracked selectedOption = this.options[0];
