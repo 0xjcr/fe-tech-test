@@ -4,6 +4,7 @@
       <HeroIcon class="w-6 h-6 text-gray-800" @icon="shopping-cart" @type="outline"/>
     </div> 
   {{else}}
+  <LinkTo @route="shopping-cart">
     <div class="w-[auto] h-[40px] bg-gray-50 shadow-sm rounded-lg flex items-center justify-center space-x-2 px-2">
       <HeroIcon class="w-6 h-6 text-violet-700" @icon="shopping-cart" @type="outline"/>
       <div class="w-[27px] h-[24px] bg-white rounded-[20px] text-violet-700 font-bold leading-6 text-base justify-center flex">
@@ -11,6 +12,7 @@
       </div>
       <div class="text-base font-normal leading-6 text-violet-700">£1234</div>
     </div>
+    </LinkTo>
   {{/if}}
 </div>
 
