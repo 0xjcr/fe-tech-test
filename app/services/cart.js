@@ -159,6 +159,10 @@ export default class CartService extends Service {
     return cartItem ? cartItem.quantity : 0;
   }
 
+  get totalItems() {
+    return this.items.reduce((total, item) => total + item.quantity, 0);
+  }
+
   get totalAmount() {
     return this.items.reduce((total, item) => total + (item.quantity * item.product.price), 0);
   }
