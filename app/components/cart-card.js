@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default class CartCardComponent extends Component {
   @service cart;
+  
 
   get quantity() {
     if (!this.args.product) {
@@ -26,4 +27,5 @@ export default class CartCardComponent extends Component {
   decrementQuantity() {
     this.cart.decrementQuantity(this.args.product);
   }
+
 }

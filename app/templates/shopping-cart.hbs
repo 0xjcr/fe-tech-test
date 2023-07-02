@@ -11,15 +11,14 @@
 <div class="absolute left-[136px] top-[224px] my-12 text-xl leading-7 font-normal text-gray-800">You have {{this.model.totalItems}} items in your cart.</div>
 
 
-<div class="absolute top-[332px] left-[136px] grid grid-cols-3 gap-x-14">
-        
-<CartCard/>
+<div class="absolute top-[332px] left-[136px] grid grid-rows-3 gap-y-6">
 
+       
       
 {{#each this.model.products as |product|}}
     <CartCard
       @product={{product}}
-      @quantity={{this.quantity}}
+      @quantity={{this.cart.getItemQuantity product}}
       @incrementQuantity={{this.incrementQuantity}}
       @decrementQuantity={{this.decrementQuantity}}
     />
@@ -35,42 +34,3 @@
 
 
 
-
-
-
-{{!-- <div class="absolute top-[800px] left-[904px]">
-<div class="w-[404px] h-[392px] bg-white rounded-lg shadow-sm mr-[132px] grid grid-rows-[60px 24px 24px 24px 24px auto] gap-4">
-
-  <div class="bg-gray-100 rounded-t-lg">
-    <p class="pt-4 pl-8 text-xl font-bold leading-7 text-gray-800">Summary</p>
-  </div>
-
-  <div class="flex justify-between">
-    <p class="pl-8 text-base font-normal leading-6 text-gray-800">Subtotal</p>
-    <p class="pr-8 text-base font-bold leading-6 text-gray-800">$1234</p>
-  </div>
-
-  <div class="flex justify-between">
-    <p class="pl-8 text-base font-normal leading-6 text-gray-800">Shipping Cost</p>
-    <p class="pr-8 text-base font-bold leading-6 text-gray-800">$0</p>
-  </div>
-
-  <div class="flex justify-between">
-    <p class="pl-8 text-base font-normal leading-6 text-gray-800">Discount</p>
-    <p class="pr-8 text-base font-bold leading-6 text-gray-800">-$1234</p>
-  </div>
-
-  <hr class="border-gray-100">
-
-  <div class="flex justify-between">
-    <p class="pl-8 text-xl font-normal leading-7 text-gray-800">Total Payable</p>
-    <p class="pr-8 text-xl font-bold leading-7 text-gray-800">$1234</p>
-  </div>
-
-  <button class="w-[188px] h-[40px] rounded-lg bg-violet-700 shadow-sm text-white font-bold text-base leading-6 justify-self-end mr-8">Continue to Checkout</button>
-
-</div>
-
-
-
-</div> --}}
