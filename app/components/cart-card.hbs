@@ -1,10 +1,12 @@
-<div class="w-[720px] h-[184px] bg-white rounded-lg border border-gray-100 shadow-sm">
+<div class="w-[720px] h-[184px] bg-white rounded-lg border border-gray-100 shadow-sm flex">
 
-    <div class="w-[208px] h-[152px] absolute top-4 left-4">
-    <img class="object-cover object-center rounded-lg" src="{{@product.image}}" alt="{{@product.name}}">    
-    </div>
+    <div class="w-[208px] h-[152px] relative top-4 left-4">
+  <div class="w-full h-full overflow-hidden rounded-lg">
+    <img class="object-cover object-center w-full h-full" src="{{@product.image}}" alt="{{@product.name}}">
+  </div>
+</div>
     
-    <div class="absolute left-[256px] top-[19px] h-[149px] w-[448px]">
+    <div class="relative left-[48px] top-[19px] h-[149px] w-[448px]">
     <div class="flex justify-between">
   <div class="text-xl font-bold leading-7 text-gray-800">{{@product.name}}</div>
   <div class="pr-2 text-xl font-normal leading-7 text-gray-800">{{format-currency @product.price}}</div>

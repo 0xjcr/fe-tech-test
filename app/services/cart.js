@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
+
 const CART_STORAGE_KEY = 'cartItems';
 
 export default class CartService extends Service {
@@ -79,9 +80,17 @@ export default class CartService extends Service {
 
   decrementQuantity(product) {
     let cartItem = this.items.find((item) => item.product.id === product.id);
-    if (cartItem && cartItem.quantity > 1) {
+    if (cartItem && cartItem.quantity > 0) {
       cartItem.quantity--;
     }
+
+    if (cartItem.quantity === 0) {
+        let index = this.items.indexOf(cartItem);
+        if (index !== -1) {
+          this.items.splice(index, 1);
+        }
+      }
+    
 
     this.logCartContents();
     this.saveCart();
@@ -102,4 +111,6 @@ export default class CartService extends Service {
       0
     );
   }
+
+
 }
