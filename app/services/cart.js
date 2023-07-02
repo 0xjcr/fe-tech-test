@@ -26,12 +26,16 @@ export default class CartService extends Service {
     console.log('Current cart contents:', this.items);
   }
 
+  refreshPage() {
+    window.location.reload();
+  }
+
   saveCart() {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(this.items));
   }
 
   // State logic------------
-
+  
   add(product) {
     let simplifiedProduct = {
       id: product.id,
@@ -63,11 +67,14 @@ export default class CartService extends Service {
       }
     }
 
+    
     this.logCartContents();
     this.saveCart();
+    this.refreshPage();
   }
 
-  remove(product) {
+
+remove(product) {
     let cartItem = this.items.find((item) => item.product.id === product.id);
 
     if (cartItem) {
@@ -81,8 +88,10 @@ export default class CartService extends Service {
       }
     }
 
+    
     this.logCartContents();
     this.saveCart();
+    this.refreshPage();
   }
 
   incrementQuantity(product) {
@@ -98,6 +107,7 @@ export default class CartService extends Service {
 
     this.logCartContents();
     this.saveCart();
+    this.refreshPage();
   }
 
   decrementQuantity(product) {
@@ -120,6 +130,7 @@ export default class CartService extends Service {
 
     this.logCartContents();
     this.saveCart();
+    this.refreshPage();
   }
 
   getItemQuantity(product) {
