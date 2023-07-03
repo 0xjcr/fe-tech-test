@@ -15,18 +15,18 @@ export default class ProductComponent extends Component {
   @action
   addToCart() {
     this.cart.add(this.args.product);
-    this.quantity++;
+    // this.quantity++;
   }
 
   @action
   incrementQuantity() {
     this.cart.add(this.args.product);
-    this.quantity++;
+    // this.quantity++;
   }
 
   @action
   decrementQuantity() {
     this.cart.decrementQuantity(this.args.product);
-    this.quantity = this.cart.getItemQuantity(this.args.product);
+    // this.quantity = this.cart.getItemQuantity(this.args.product);
   }
 }
