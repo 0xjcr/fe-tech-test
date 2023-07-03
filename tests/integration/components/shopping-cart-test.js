@@ -7,20 +7,32 @@ module('Integration | Component | shopping-cart', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
     await render(hbs`<ShoppingCart />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom('.w-6').exists();
 
-    // Template block usage:
-    await render(hbs`
-      <ShoppingCart>
-        template block text
-      </ShoppingCart>
-    `);
+  });
 
-    assert.dom(this.element).hasText('template block text');
+  test('it renders empty cart icon when totalItems is 0', async function (assert) {
+    this.set('cart', { totalItems: 0 });
+
+    await render(hbs`<ShoppingCart @cart={{cart}} />`);
+
+    assert.dom('.w-[40px]').exists();
+    assert.dom('.w-[auto]').doesNotExist();
+  });
+
+  test('it renders cart icon with totalItems and totalPayable', async function (assert) {
+    this.set('cart', {
+      totalItems: 3,
+      totalPayable: 13.50,
+    });
+
+    await render(hbs`<ShoppingCart @cart={{cart}} />`);
+
+    assert.dom('.w-[40px]').doesNotExist();
+    assert.dom('.w-[auto]').exists();
+    assert.dom('.w-[27px]').hasText('3');
+    assert.dom('.text-base').hasText('50.00');
   });
 });
