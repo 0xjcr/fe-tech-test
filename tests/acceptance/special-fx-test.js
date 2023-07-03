@@ -10,6 +10,8 @@ module('Acceptance | special fx', function (hooks) {
 
     assert.strictEqual(currentURL(), '/');
     assert.dom('h1').hasText('Groceries');
-    assert.dom('h3').hasText('Special FX offers only the finest organic produce.');
+    assert
+      .dom('h3')
+      .hasText('Special FX offers only the finest organic produce.');
   });
 });
