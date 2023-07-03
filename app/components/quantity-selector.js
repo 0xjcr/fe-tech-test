@@ -17,6 +17,4 @@ export default class QuantitySelectorComponent extends Component {
   decrementQuantity() {
     this.cart.decrementQuantity(this.product);
   }
-
 }
-

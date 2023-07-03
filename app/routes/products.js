@@ -11,5 +11,4 @@ export default class ProductsRoute extends Route {
     this.products = products;
     return products;
   }
-
 }

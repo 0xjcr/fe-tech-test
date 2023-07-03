@@ -1,17 +1,10 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
-
-
 const CART_STORAGE_KEY = 'cartItems';
 
 export default class CartService extends Service {
   @tracked items = [];
-  @tracked shippingCost = 0;
-  @tracked quantity;
-  @tracked totalAmount = 0;
-
-
 
   constructor() {
     super(...arguments);
@@ -26,36 +19,36 @@ export default class CartService extends Service {
     }
   }
 
-//   logCartContents() {
-//     console.log('Current cart contents:', this.items);
-//     console.log('subtotal:', this.subtotal);
-//   }
-
-  refreshPage() {
-    // window.location.reload();
-  }
-
   saveCart() {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(this.items));
   }
 
-  // State logic------------
-  
+  refreshPage() {
+    window.location.reload();
+  }
+
+  updateCart() {
+    this.saveCart();
+    this.refreshPage();
+  }
+
   add(product) {
-    let simplifiedProduct = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      code: product.code,
-      image: product.image,
-      promotion: product.promotion,
-    };
+    const existingCartItem = this.items.find(
+      (item) => item.product.id === product.id
+    );
 
-    let cartItem = this.items.find((item) => item.product.id === product.id);
-
-    if (cartItem) {
-      cartItem.quantity++;
+    if (existingCartItem) {
+      existingCartItem.quantity++;
     } else {
+      const simplifiedProduct = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        code: product.code,
+        image: product.image,
+        promotion: product.promotion,
+      };
+
       if (product.code === 'GR1') {
         // Buy 1 get 1 free for Green Tea
         this.items.push({ product: simplifiedProduct, quantity: 2 });
@@ -72,37 +65,28 @@ export default class CartService extends Service {
       }
     }
 
-    
-    this.logCartContents();
-    this.saveCart();
-    this.refreshPage();
-    
+    this.updateCart();
   }
 
-
-remove(product) {
-    let cartItem = this.items.find((item) => item.product.id === product.id);
+  remove(product) {
+    const cartItem = this.items.find((item) => item.product.id === product.id);
 
     if (cartItem) {
       if (cartItem.quantity > 1) {
         cartItem.quantity--;
       } else {
-        let index = this.items.indexOf(cartItem);
+        const index = this.items.indexOf(cartItem);
         if (index !== -1) {
           this.items.splice(index, 1);
         }
       }
     }
 
-    
-    this.logCartContents();
-    this.saveCart();
-    this.refreshPage();
-    
+    this.updateCart();
   }
 
   incrementQuantity(product) {
-    let cartItem = this.items.find((item) => item.product.id === product.id);
+    const cartItem = this.items.find((item) => item.product.id === product.id);
     if (cartItem) {
       if (product.code === 'GR1') {
         // Increment by 2 for Green Tea
@@ -112,14 +96,11 @@ remove(product) {
       }
     }
 
-    this.logCartContents();
-    this.saveCart();
-    this.refreshPage();
-    
+    this.updateCart();
   }
 
   decrementQuantity(product) {
-    let cartItem = this.items.find((item) => item.product.id === product.id);
+    const cartItem = this.items.find((item) => item.product.id === product.id);
     if (cartItem && cartItem.quantity >= 1) {
       if (product.code === 'GR1') {
         // Decrement by 2 for Green Tea
@@ -130,20 +111,17 @@ remove(product) {
     }
 
     if (cartItem.quantity === 0) {
-      let index = this.items.indexOf(cartItem);
+      const index = this.items.indexOf(cartItem);
       if (index !== -1) {
         this.items.splice(index, 1);
       }
     }
 
-    this.logCartContents();
-    this.saveCart();
-    this.refreshPage();
-    
+    this.updateCart();
   }
 
   getItemQuantity(product) {
-    let cartItem = this.items.find((item) => item.product.id === product.id);
+    const cartItem = this.items.find((item) => item.product.id === product.id);
     return cartItem ? cartItem.quantity : 0;
   }
 
@@ -151,16 +129,12 @@ remove(product) {
     return this.items.reduce((total, item) => total + item.quantity, 0);
   }
 
-  // pricing logic ------------
-
   get subtotal() {
     return this.items.reduce((total, item) => {
       const itemPrice = item.product.price;
       return total + item.quantity * itemPrice;
     }, 0);
-}
-
-
+  }
 
   get totalDiscount() {
     return this.items.reduce((total, item) => {

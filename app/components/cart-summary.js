@@ -3,13 +3,10 @@ import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-
-
 export default class CartSummaryComponent extends Component {
   @service cart;
   @tracked cartItems = this.cart.items;
   @tracked totalAmount = this.cart.totalAmount;
-
 
   constructor() {
     super(...arguments);
@@ -24,5 +21,3 @@ export default class CartSummaryComponent extends Component {
     this.totalAmount = this.cart.totalAmount;
   }
 }
-
-
