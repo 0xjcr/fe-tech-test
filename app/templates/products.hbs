@@ -1,32 +1,19 @@
 {{page-title "Products"}}
 
-{{!-- <div class="absolute left-[136px] top-[120px] max-w-[1168px]">
-<ItemNav/>
-</div>
-
-
-<h1 class="absolute left-[136px] top-[224px] text-4xl leading-10 font-medium text-gray-800">Groceries</h1>
-<h3 class="absolute left-[136px] top-[224px] my-12 text-xl leading-7 font-normal text-gray-800">Special FX offers only the finest organic produce.</h3>
-<div class="relative w-[1440px]">
-<div class="absolute left-[136px] top-[260px] grid grid-cols-3 gap-x-14">
-  {{#each this.model as |product|}}
-    <Product @product={{product}} />
-  {{/each}}
-</div>  
-</div>   --}}
-
-<div class="w-[1440px] h-screen bg-red-200 mx-auto">
-<div class="flex max-w-[1168px]">
+<div class="w-[1440px] h-screen mx-auto">
+<div class="flex max-w-[1168px] top-0">
   <div class="relative left-[136px] top-[48px]">
     <ItemNav/>
   </div>
 </div>
 
-<h1 class="relative left-[136px] top-[152px] text-4xl leading-10 font-medium text-gray-800">Groceries</h1>
-<h3 class="relative left-[136px] top-[152px] my-12 text-xl leading-7 font-normal text-gray-800">Special FX offers only the finest organic produce.</h3>
+<div class="relative top-[124px] left-[136px] h-[76px] w-[432px]">
+<h1 class="text-4xl font-medium leading-10 text-gray-800 ">Groceries</h1>
+<h3 class="mt-2 text-xl font-normal leading-7 text-gray-800 whitespace-nowrap">Special FX offers only the finest organic produce.</h3>
+</div>
 
-<div class="relative max-w-[1168px] left-[136px] space-between">
-  <div class="relative top-[188px] grid grid-cols-3 gap-x-14">
+<div class="relative max-w-[1168px] left-[136px]">
+  <div class="relative top-[164px] grid grid-cols-3 gap-x-14">
     {{#each this.model as |product|}}
       <Product @product={{product}} />
     {{/each}}
