@@ -27,12 +27,10 @@ export default class CartCardComponent extends Component {
   @action
   incrementQuantity() {
     this.cart.incrementQuantity(this.args.product);
-    
   }
 
   @action
   decrementQuantity() {
     this.cart.decrementQuantity(this.args.product);
-    
   }
 }

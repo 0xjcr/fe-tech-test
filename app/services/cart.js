@@ -39,9 +39,10 @@ export default class CartService extends Service {
     );
 
     if (existingCartItem) {
-      console.log('existingcartitem', existingCartItem)
-      if (existingCartItem.product.code === 'GR1') existingCartItem.quantity+=2
-      else existingCartItem.quantity++
+      console.log('existingcartitem', existingCartItem);
+      if (existingCartItem.product.code === 'GR1')
+        existingCartItem.quantity += 2;
+      else existingCartItem.quantity++;
     } else {
       const simplifiedProduct = {
         id: product.id,
