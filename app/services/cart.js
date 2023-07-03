@@ -1,13 +1,17 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
+
+
 const CART_STORAGE_KEY = 'cartItems';
 
 export default class CartService extends Service {
   @tracked items = [];
   @tracked shippingCost = 0;
-  @tracked cartItems = 0;
+  @tracked quantity;
   @tracked totalAmount = 0;
+
+
 
   constructor() {
     super(...arguments);
@@ -22,12 +26,13 @@ export default class CartService extends Service {
     }
   }
 
-  logCartContents() {
-    console.log('Current cart contents:', this.items);
-  }
+//   logCartContents() {
+//     console.log('Current cart contents:', this.items);
+//     console.log('subtotal:', this.subtotal);
+//   }
 
   refreshPage() {
-    window.location.reload();
+    // window.location.reload();
   }
 
   saveCart() {
@@ -71,6 +76,7 @@ export default class CartService extends Service {
     this.logCartContents();
     this.saveCart();
     this.refreshPage();
+    
   }
 
 
@@ -92,6 +98,7 @@ remove(product) {
     this.logCartContents();
     this.saveCart();
     this.refreshPage();
+    
   }
 
   incrementQuantity(product) {
@@ -108,11 +115,12 @@ remove(product) {
     this.logCartContents();
     this.saveCart();
     this.refreshPage();
+    
   }
 
   decrementQuantity(product) {
     let cartItem = this.items.find((item) => item.product.id === product.id);
-    if (cartItem && cartItem.quantity > 0) {
+    if (cartItem && cartItem.quantity >= 1) {
       if (product.code === 'GR1') {
         // Decrement by 2 for Green Tea
         cartItem.quantity -= 2;
@@ -131,6 +139,7 @@ remove(product) {
     this.logCartContents();
     this.saveCart();
     this.refreshPage();
+    
   }
 
   getItemQuantity(product) {
@@ -149,7 +158,9 @@ remove(product) {
       const itemPrice = item.product.price;
       return total + item.quantity * itemPrice;
     }, 0);
-  }
+}
+
+
 
   get totalDiscount() {
     return this.items.reduce((total, item) => {
