@@ -24,12 +24,15 @@
 
     <div class="flex items-end">
       {{#if (eq this.quantity 0)}}
-        <AddToCart @addToCart={{this.addToCart}} />
+        <AddToCart @addToCart={{this.addToCart}} 
+        class="add-to-cart-button"
+        />
       {{else}}
         <QuantitySelector
           @quantity={{this.quantity}}
           @incrementQuantity={{this.incrementQuantity}}
           @decrementQuantity={{this.decrementQuantity}}
+          class="quantity-selector"
         />
       {{/if}}
     </div>

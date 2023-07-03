@@ -1,11 +1,13 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, click, find } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import { findComponent } from '@ember/test-helpers';
+
 
 module('Integration | Component | product', function (hooks) {
   setupRenderingTest(hooks);
+
+  hooks.beforeEach(function () {});
 
   test('it renders', async function (assert) {
     const product = {
@@ -29,22 +31,26 @@ module('Integration | Component | product', function (hooks) {
     assert
       .dom('.text-xl.font-bold.leading-7.text-gray-800')
       .hasText(product.name);
+
     assert
       .dom('.text-xl.font-normal.leading-7.text-gray-800')
       .hasText('£20.00');
     assert.dom('img').hasAttribute('src', 'path/to/image.jpg');
-    
-    const addToCartComponent = findComponent(this.element, 'AddToCart');
-    assert.ok(addToCartComponent, 'AddToCart component exists');
 
-    assert.dom('.quantity-selector').doesNotExist();
 
-    await render(hbs`
-      <Product @product={{this.product}} @quantity={{this.quantity}}>
-        template block text
-      </Product>
-    `);
+    assert
+      .dom('.add-to-cart-button')
+      .exists('AddToCart button is initially rendered');
 
-    assert.dom(this.element).hasText('template block text');
+    await click('.add-to-cart-button');
+
+    assert
+      .dom('.quantity-selector')
+      .exists(
+        'QuantitySelector component is rendered after clicking AddToCart button'
+      );
+    assert
+      .dom('.add-to-cart-button')
+      .doesNotExist('AddToCart button is removed after clicking');
   });
 });
