@@ -2,13 +2,13 @@
 
 <div class="w-[1440px] h-screen mx-auto">
 <LinkTo @route="products">
-<div class="flex items-center relative w-[183px] h-[40px] top-12 left-[136px] justify-start text-base leading-6 font-normal">
+<div class="flex items-center  w-[183px] h-[40px] mt-12 ml-[136px] justify-start text-base leading-6 font-normal">
     <HeroIcon class="w-6 h-6 mr-2 text-gray-800" @icon="chevron-left" @type="outline"/>Continue shopping
 </div>
 </LinkTo>
 
 
-<div class="relative top-[114px] left-[136px] h-[76px] w-[432px]">
+<div class=" mt-16 ml-[136px] h-[76px] w-[432px]">
 <h1 class="text-4xl font-medium leading-10 text-gray-800 ">Shopping Cart</h1>
 <h3 class="mt-2 text-xl font-normal leading-7 text-gray-800 whitespace-nowrap">You have {{this.model.totalItems}} items in your cart.</h3>
 </div>
@@ -18,7 +18,7 @@
   
 {{!-- placeholder div --}}
   
-<div class="relative top-[144px] left-[136px] grid grid-rows-3 gap-y-6">
+<div class=" mt-8 ml-[136px] grid grid-rows-3 gap-y-6">
 
        
       
@@ -33,7 +33,7 @@
 
 </div>
 
-<div class="relative top-[144px] left-[184px]">
+<div class="relative mt-8 ml-12 ">
 
 <CartSummary
   @totalPayable={{this.cart.totalPayable}}

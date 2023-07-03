@@ -5,6 +5,7 @@ const CART_STORAGE_KEY = 'cartItems';
 
 export default class CartService extends Service {
   @tracked items = [];
+  @tracked shippingCost = 0;
 
   constructor() {
     super(...arguments);

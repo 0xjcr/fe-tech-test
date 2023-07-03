@@ -1,22 +1,22 @@
 {{page-title "Products"}}
 
-<div class="w-[1440px] h-screen mx-auto">
-<div class="flex max-w-[1168px] top-0">
-  <div class="relative left-[136px] top-12">
-    <ItemNav/>
+<div class="max-w-[1440px] h-screen mx-auto px-[136px]">
+  
+    <div class="mt-12 ">
+      <ItemNav/>
+    </div>
+  
+
+  <div class="mt-[64px]  h-[76px] w-[432px]">
+  <h1 class="text-4xl font-medium leading-10 text-gray-800 ">Groceries</h1>
+  <h3 class="mt-2 text-xl font-normal leading-7 text-gray-800 whitespace-nowrap">Special FX offers only the finest organic produce.</h3>
   </div>
-</div>
 
-<div class="relative top-[114px] left-[136px] h-[76px] w-[432px]">
-<h1 class="text-4xl font-medium leading-10 text-gray-800 ">Groceries</h1>
-<h3 class="mt-2 text-xl font-normal leading-7 text-gray-800 whitespace-nowrap">Special FX offers only the finest organic produce.</h3>
-</div>
-
-<div class="relative max-w-[1168px] left-[136px]">
-  <div class="relative top-[144px] grid grid-cols-3 gap-x-14">
-    {{#each this.model as |product|}}
-      <Product @product={{product}} />
-    {{/each}}
-  </div>  
-</div>
+  <div class="max-w-[1168px] ">
+    <div class="grid mt-8 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-14">
+      {{#each this.model as |product|}}
+        <Product @product={{product}} />
+      {{/each}}
+    </div>  
+  </div>
 </div>

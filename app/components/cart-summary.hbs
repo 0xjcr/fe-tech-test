@@ -1,41 +1,63 @@
-<div class="w-[404px] h-[392px] bg-white rounded-lg shadow-sm mr-[132px]">
+<div class="w-[404px] pb-8 bg-white rounded-lg shadow-sm mr-[132px] border border-gray-100 box-content">
 
-<div class="h-[60px] w-[403px] bg-gray-100 rounded-t-lg left-[1px]">
+  <div class="flex items-center w-full px-8 py-4 bg-gray-100 rounded-t-lg">
 
-<p class="absolute text-xl font-bold leading-7 text-gray-800 top-4 left-8">Summary</p>   
-  
-</div>   
+    <p
+      class="text-xl font-bold leading-7 text-gray-800 top-4 left-8"
+    >Summary</p>
 
-<div class="absolute w-[340px] h-[24px] left-8 top-[92px] flex justify-between">
-<p class="text-base font-normal leading-6 text-gray-800 ">Subtotal</p>
+  </div>
 
-<p class="text-base font-bold leading-6 text-gray-800 ">{{format-currency this.cart.subtotal}}</p>
+  <div
+    class="flex justify-between px-8 mt-8 mb-4"
+  >
+    <p class="text-base font-normal leading-6 text-gray-800">Subtotal</p>
 
-</div>
+    <p class="text-base font-bold leading-6 text-gray-800">{{format-currency
+        this.cart.subtotal
+      }}</p>
 
-<div class="absolute w-[340px] h-[24px] left-8 top-[132px] flex justify-between">
-<p class="text-base font-normal leading-6 text-gray-800 ">Shipping Cost</p>
+  </div>
 
-<p class="text-base font-bold leading-6 text-gray-800 ">{{format-currency this.cart.shippingCost}}</p>
+  <div
+    class="flex justify-between px-8"
+  >
+    <p class="text-base font-normal leading-6 text-gray-800">Shipping Cost</p>
 
-</div>
+    <p class="text-base font-bold leading-6 text-gray-800">{{format-currency
+        this.cart.shippingCost
+      }}</p>
 
-<div class="absolute w-[340px] h-[24px] left-8 top-[172px] flex justify-between">
-<p class="text-base font-normal leading-6 text-gray-800 ">Discount</p>
+  </div>
 
-<p class="text-base font-bold leading-6 text-gray-800 ">-{{format-currency this.cart.totalDiscount}}</p>
+  <div
+    class="flex justify-between px-8 mt-4 "
+  >
+    <p class="text-base font-normal leading-6 text-gray-800">Discount</p>
 
-</div>
+    <p class="text-base font-bold leading-6 text-gray-800">-{{format-currency
+        this.cart.totalDiscount
+      }}</p>
 
-<hr class="absolute top-[228px] left-[1px] w-[403px] border-gray-100 ">
-    
-<div class="absolute w-[340px] h-[24px] left-8 top-[264px] flex justify-between">
-<p class="text-xl font-normal leading-7 text-gray-800 ">Total Payable</p>
+  </div>
 
-<p class="text-xl font-bold leading-7 text-gray-800 ">{{format-currency this.cart.totalPayable}}</p>
+  <hr class="my-8 border-gray-100" />
 
-</div>
+  <div
+    class="flex justify-between px-8 "
+  >
+    <p class="text-xl font-normal leading-7 text-gray-800">Total Payable</p>
 
-<button class="absolute w-[188px] h-[40px] top-[320px] left-[182px] rounded-lg bg-violet-700 shadow-sm text-white font-bold text-base leading-6" type="button">Go to Checkout</button>
-    
+    <p class="text-xl font-bold leading-7 text-gray-800">{{format-currency
+        this.cart.totalPayable
+      }}</p>
+
+  </div>
+
+<div class="flex justify-end px-8 mt-[28px]">
+  <button
+    class="p-2 text-base font-bold leading-6 text-white rounded-lg shadow-sm bg-violet-700"
+    type="button"
+  >Go to Checkout</button></div>
+
 </div>
