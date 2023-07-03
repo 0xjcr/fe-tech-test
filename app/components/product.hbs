@@ -1,31 +1,39 @@
-<div class="h-[363px] w-[352px] mx-auto border rounded-lg border-gray-100 bg-white shadow-sm">
-  <div class="relative w-[352px]">
-  <img class="object-cover object-center rounded-t-lg" src="{{@product.image}}" alt="{{@product.name}}">
-  
-  <div class="absolute top-0 right-0 p-4">
-  <Offer @product={{@product}}/>  
+<div
+  class="w-[352px] relative bg-white border border-gray-100 rounded-lg shadow-sm"
+>
+
+  <img
+    class="object-cover object-center h-[260px] rounded-t-lg"
+    src="{{@product.image}}"
+    alt="{{@product.name}}"
+  />
+
+  <div class="absolute top-4 right-4">
+    <Offer @product={{@product}} />
   </div>
-  
-</div>
-<div class="p-4 h-[103px] w-[352px] rounded-b-lg relative">
-<div class="p-4 h-[71px] w-[128px] relative">
-    <div class="absolute top-0 left-0 text-xl font-bold leading-7 text-gray-800">{{@product.name}}</div>
-    <div class="absolute bottom-0 left-0 text-xl font-normal leading-7 text-gray-800">{{format-currency @product.price}}</div>
+
+  <div class="flex p-4 rounded-b-lg h-[103px] justify-between">
+    <div class="flex flex-col justify-between flex-grow">
+      <div
+        class="text-xl font-bold leading-7 text-gray-800"
+      >{{@product.name}}</div>
+      <div class="text-xl font-normal leading-7 text-gray-800">{{format-currency
+          @product.price
+        }}</div>
+    </div>
+
+    <div class="flex items-end">
+      {{#if (eq this.quantity 0)}}
+        <AddToCart @addToCart={{this.addToCart}} />
+      {{else}}
+        <QuantitySelector
+          @quantity={{this.quantity}}
+          @incrementQuantity={{this.incrementQuantity}}
+          @decrementQuantity={{this.decrementQuantity}}
+        />
+      {{/if}}
+    </div>
+
   </div>
-  
 
-
-
-
-<div class="absolute bottom-0 right-0 p-4">
-{{#if (eq this.quantity 0)}}
-  <AddToCart @addToCart={{this.addToCart}}/>
-{{else}}
-  <QuantitySelector @quantity={{this.quantity}} @incrementQuantity={{this.incrementQuantity}} @decrementQuantity={{this.decrementQuantity}}/>
-{{/if}}
-</div>
-
-
-</div>
-  
 </div>
