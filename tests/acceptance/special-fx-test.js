@@ -5,9 +5,11 @@ import { setupApplicationTest } from 'kshop-app/tests/helpers';
 module('Acceptance | special fx', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('visiting /special-fx', async function (assert) {
-    await visit('/special-fx');
+  test('visiting /', async function (assert) {
+    await visit('/');
 
-    assert.strictEqual(currentURL(), '/special-fx');
+    assert.strictEqual(currentURL(), '/');
+    assert.dom('h1').hasText('Groceries');
+    assert.dom('h3').hasText('Special FX offers only the finest organic produce.');
   });
 });
