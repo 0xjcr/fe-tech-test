@@ -1,5 +1,4 @@
-<div class="absolute right-0">
-  {{#if (eq this.cart.totalItems 0)}}
+{{#if (eq this.cart.totalItems 0)}}
     <div class="w-[40px] h-[40px] bg-gray-50 shadow-sm rounded-lg flex items-center justify-center space-x-2">
       <HeroIcon class="w-6 h-6 text-gray-800" @icon="shopping-cart" @type="outline"/>
     </div> 
@@ -14,7 +13,7 @@
     </div>
     </LinkTo>
   {{/if}}
-</div>
+
 
 
 
