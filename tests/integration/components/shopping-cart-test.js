@@ -10,6 +10,7 @@ module('Integration | Component | shopping-cart', function (hooks) {
     await render(hbs`<ShoppingCart />`);
 
     assert.dom('.w-6').exists();
+
   });
 
   test('it renders empty cart icon when totalItems is 0', async function (assert) {
@@ -24,7 +25,7 @@ module('Integration | Component | shopping-cart', function (hooks) {
   test('it renders cart icon with totalItems and totalPayable', async function (assert) {
     this.set('cart', {
       totalItems: 3,
-      totalPayable: 13.5,
+      totalPayable: 13.50,
     });
 
     await render(hbs`<ShoppingCart @cart={{cart}} />`);

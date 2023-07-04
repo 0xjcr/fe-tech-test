@@ -3,6 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click, find } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
+
 module('Integration | Component | product', function (hooks) {
   setupRenderingTest(hooks);
 
@@ -35,6 +36,7 @@ module('Integration | Component | product', function (hooks) {
       .dom('.text-xl.font-normal.leading-7.text-gray-800')
       .hasText('£20.00');
     assert.dom('img').hasAttribute('src', 'path/to/image.jpg');
+
 
     assert
       .dom('.add-to-cart-button')
