@@ -1,9 +1,9 @@
 {{page-title "Shopping Cart"}}
 
-<div class="mt-[72px] w-[1440px] mx-auto">
+<div class="mt-[72px] w-[1440px] mx-auto px-[136px]">
   <LinkTo @route="products">
     <div
-      class="flex items-center pt-12 ml-[136px] justify-start text-base leading-6 font-normal"
+      class="flex items-center justify-start pt-12 text-base font-normal leading-6"
     >
       <HeroIcon
         class="w-6 h-6 mr-2 text-gray-800"
@@ -13,17 +13,16 @@
     </div>
   </LinkTo>
 
-  <div class="mt-16 ml-[136px]">
-    <h1 class="text-4xl font-medium leading-10 text-gray-800">Shopping Cart</h1>
-    <h3
-      class="mt-2 text-xl font-normal leading-7 text-gray-800 whitespace-nowrap"
-    >You have {{this.model.quantity}} items in your cart.</h3>
-  </div>
+<PageHeader 
+  @heading="Shopping Cart" 
+  @subheadingTemplate="You have {quantity} items in your cart."
+  @quantity={{this.cart.quantity}}/>
+
 
   <div class="flex">
 
     {{#if this.model.quantity}}
-      <div class="mt-8 ml-[136px] grid grid-rows-3 gap-y-6 pb-10">
+      <div class="grid grid-rows-3 pb-10 mt-8 gap-y-6">
         {{#each this.model.products as |product|}}
           <CartCard
             @product={{product}}

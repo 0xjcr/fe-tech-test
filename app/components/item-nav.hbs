@@ -1,6 +1,6 @@
-<nav class="flex space-x-8">
+<nav class="flex pt-12 space-x-8">
   {{#each this.options as |option|}}
-     <div class="flex items-center justify-center px-2 h-[40px] {{if (this.isSelected option) "border-b border-violet-700 text-violet-700 " ""}}">
+     <div class="flex items-center justify-center px-2 {{if (this.isSelected option) "border-b border-violet-700 text-violet-700 " ""}}">
       <LinkTo @route={{option.route}} class="{{if (this.isSelected option) "text-violet-700 font-bold" "text-gray-800 font-normal"}}" {{on "click" (fn this.selectOption option)}}>
         <p>{{option.label}}</p>
       </LinkTo>

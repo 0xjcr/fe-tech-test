@@ -117,7 +117,7 @@ export default class CartService extends Service {
   incrementQuantity(product) {
     const cartItem = this.items.find((item) => item.product.id === product.id);
     if (cartItem) {
-      // Green Tea 2 for 1 
+      // Green Tea 2 for 1
       if (product.code === 'GR1') {
         cartItem.quantity += 2;
       } else {
@@ -155,4 +155,3 @@ export default class CartService extends Service {
     return cartItem ? cartItem.quantity : 0;
   }
 }
-

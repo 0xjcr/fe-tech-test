@@ -24,4 +24,3 @@ export default class CartCardComponent extends Component {
     this.quantity = this.cart.getItemQuantity(this.args.product);
   }
 }
-

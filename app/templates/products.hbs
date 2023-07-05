@@ -1,19 +1,14 @@
 {{page-title "Products"}}
 
 <div class="mt-[72px] max-w-[1440px] h-screen mx-auto px-[136px]">
+   
+<ItemNav/>
+    
+<PageHeader @heading="Groceries" 
+  @subheading="Special FX offers only the finest organic produce." />
   
-    <div class="pt-12 ">
-      <ItemNav/>
-    </div>
-  
-
-  <div class="mt-[64px]  h-[76px] w-[432px]">
-  <h1 class="text-4xl font-medium leading-10 text-gray-800 ">Groceries</h1>
-  <h3 class="mt-2 text-xl font-normal leading-7 text-gray-800 whitespace-nowrap">Special FX offers only the finest organic produce.</h3>
-  </div>
-
   <div class="max-w-[1168px]">
-    <div class="grid mt-8 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-14 ">
+    <div class="grid mt-8 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 gap-14">
       {{#each this.model as |product|}}
         <Product @product={{product}} />
       {{/each}}

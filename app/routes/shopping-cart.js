@@ -1,10 +1,9 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
+
 
 export default class ShoppingCartRoute extends Route {
   @service cart;
- 
 
   model() {
     return {
@@ -12,4 +11,6 @@ export default class ShoppingCartRoute extends Route {
       products: this.cart.items.map((item) => item.product),
     };
   }
+
+  
 }
