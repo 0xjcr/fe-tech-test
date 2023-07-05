@@ -5,8 +5,8 @@ import { action } from '@ember/object';
 
 export default class CartSummaryComponent extends Component {
   @service cart;
-  @tracked cartItems = this.cart.items;
-  @tracked totalAmount = this.cart.totalAmount;
+
+  
 
   constructor() {
     super(...arguments);

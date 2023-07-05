@@ -4,7 +4,8 @@ import { tracked } from '@glimmer/tracking';
 
 export default class QuantitySelectorComponent extends Component {
   @service cart;
-  @tracked product;
+
+  
 
   get quantity() {
     return this.cart.getItemQuantity(this.product.id);
@@ -12,9 +13,17 @@ export default class QuantitySelectorComponent extends Component {
 
   incrementQuantity() {
     this.cart.incrementQuantity(this.product);
+    console.log(
+      'QuantitySelectorComponent - Increment Quantity:',
+      this.quantity
+    );
   }
 
   decrementQuantity() {
     this.cart.decrementQuantity(this.product);
+    console.log(
+      'QuantitySelectorComponent - Decrement Quantity:',
+      this.quantity
+    );
   }
 }

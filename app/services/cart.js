@@ -1,48 +1,71 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-
-const CART_STORAGE_KEY = 'cartItems';
+import { action } from '@ember/object';
 
 export default class CartService extends Service {
   @tracked items = [];
   @tracked shippingCost = 0;
+  @tracked quantity = 0;
+  @tracked subtotal = 0;
+  @tracked totalDiscount = 0;
+  @tracked totalPayable = 0;
 
-  constructor() {
-    super(...arguments);
-    this.loadCart();
-  }
-
-  loadCart() {
-    const cartItems = localStorage.getItem(CART_STORAGE_KEY);
-
-    if (cartItems) {
-      this.items = JSON.parse(cartItems);
-    }
-  }
-
-  saveCart() {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(this.items));
-  }
-
-  refreshPage() {
-    window.location.reload();
-  }
-
+  @action
   updateCart() {
-    this.saveCart();
-    this.refreshPage();
+    this.subtotal = this.calculateSubtotal();
+    this.totalDiscount = this.calculateTotalDiscount();
+    this.totalPayable = this.calculateTotalPayable();
+    this.quantity = this.calculateTotalQuantity();
   }
 
+  calculateSubtotal() {
+    return this.items.reduce((total, item) => {
+      const itemPrice = item.product.price;
+      return total + item.quantity * itemPrice;
+    }, 0);
+  }
+
+  calculateTotalDiscount() {
+    return this.items.reduce((total, item) => {
+      let itemDiscount = 0;
+
+      if (item.product.code === 'GR1') {
+        // Discount for Green Tea
+        const greenTeaCount = Math.floor(item.quantity / 2);
+        itemDiscount = greenTeaCount * item.product.price;
+      } else if (item.product.code === 'SR1' && item.quantity >= 3) {
+        // Discount for Strawberries
+        itemDiscount = 0.5 * item.quantity;
+      } else if (item.product.code === 'CF1' && item.quantity >= 3) {
+        // Discount for Coffee
+        itemDiscount = 3.743 * item.quantity;
+      }
+
+      return total + itemDiscount;
+    }, 0);
+  }
+
+  calculateTotalPayable() {
+    const shippingCost = 0;
+    return this.subtotal - this.totalDiscount + shippingCost;
+  }
+
+  calculateTotalQuantity() {
+    return this.items.reduce((total, item) => total + item.quantity, 0);
+  }
+
+  @action
   add(product) {
     const existingCartItem = this.items.find(
       (item) => item.product.id === product.id
     );
 
     if (existingCartItem) {
-      console.log('existingcartitem', existingCartItem);
-      if (existingCartItem.product.code === 'GR1')
+      if (existingCartItem.product.code === 'GR1') {
         existingCartItem.quantity += 2;
-      else existingCartItem.quantity++;
+      } else {
+        existingCartItem.quantity++;
+      }
     } else {
       const simplifiedProduct = {
         id: product.id,
@@ -72,6 +95,7 @@ export default class CartService extends Service {
     this.updateCart();
   }
 
+  @action
   remove(product) {
     const cartItem = this.items.find((item) => item.product.id === product.id);
 
@@ -89,11 +113,12 @@ export default class CartService extends Service {
     this.updateCart();
   }
 
+  @action
   incrementQuantity(product) {
     const cartItem = this.items.find((item) => item.product.id === product.id);
     if (cartItem) {
+      // Green Tea 2 for 1 
       if (product.code === 'GR1') {
-        // Increment by 2 for Green Tea
         cartItem.quantity += 2;
       } else {
         cartItem.quantity++;
@@ -103,11 +128,12 @@ export default class CartService extends Service {
     this.updateCart();
   }
 
+  @action
   decrementQuantity(product) {
     const cartItem = this.items.find((item) => item.product.id === product.id);
     if (cartItem && cartItem.quantity >= 1) {
+      // Green Tea 2 for 1
       if (product.code === 'GR1') {
-        // Decrement by 2 for Green Tea
         cartItem.quantity -= 2;
       } else {
         cartItem.quantity--;
@@ -128,40 +154,5 @@ export default class CartService extends Service {
     const cartItem = this.items.find((item) => item.product.id === product.id);
     return cartItem ? cartItem.quantity : 0;
   }
-
-  get totalItems() {
-    return this.items.reduce((total, item) => total + item.quantity, 0);
-  }
-
-  get subtotal() {
-    return this.items.reduce((total, item) => {
-      const itemPrice = item.product.price;
-      return total + item.quantity * itemPrice;
-    }, 0);
-  }
-
-  get totalDiscount() {
-    return this.items.reduce((total, item) => {
-      let itemDiscount = 0;
-
-      if (item.product.code === 'GR1') {
-        // Discount for Green Tea
-        const greenTeaCount = Math.floor(item.quantity / 2);
-        itemDiscount = greenTeaCount * item.product.price;
-      } else if (item.product.code === 'SR1' && item.quantity >= 3) {
-        // Discount for Strawberries
-        itemDiscount = 0.5 * item.quantity;
-      } else if (item.product.code === 'CF1' && item.quantity >= 3) {
-        // Discount for Coffees
-        itemDiscount = 3.743 * item.quantity;
-      }
-
-      return total + itemDiscount;
-    }, 0);
-  }
-
-  get totalPayable() {
-    const shippingCost = 0;
-    return this.subtotal - this.totalDiscount + shippingCost;
-  }
 }
+
