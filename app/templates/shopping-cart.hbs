@@ -21,11 +21,11 @@
 
   <div class="flex">
 
-    {{#if this.model.quantity}}
+    {{#if this.model.cart.quantity}}
       <div class="grid grid-rows-3 pb-10 mt-8 gap-y-6">
-        {{#each this.model.products as |product|}}
+        {{#each this.model.cart.items as |cartItem|}}
           <CartCard
-            @product={{product}}
+            @product={{cartItem.product}}
             @incrementQuantity={{this.incrementQuantity}}
             @decrementQuantity={{this.decrementQuantity}}
           />
