@@ -16,6 +16,7 @@ export default class CartService extends Service {
     this.totalDiscount = this.calculateTotalDiscount();
     this.totalPayable = this.calculateTotalPayable();
     this.quantity = this.calculateTotalQuantity();
+    this.items = [...this.items];
   }
 
   calculateSubtotal() {
