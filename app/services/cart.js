@@ -3,12 +3,14 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class CartService extends Service {
-  @tracked items = [];
-  @tracked shippingCost = 0;
-  @tracked quantity = 0;
-  @tracked subtotal = 0;
-  @tracked totalDiscount = 0;
-  @tracked totalPayable = 0;
+  
+  @tracked items = JSON.parse(localStorage.getItem('cartItems')) || [];
+  @tracked shippingCost = JSON.parse(localStorage.getItem('shippingCost')) || 0;
+  @tracked quantity = JSON.parse(localStorage.getItem('quantity')) || 0;
+  @tracked subtotal = JSON.parse(localStorage.getItem('subtotal')) || 0;
+  @tracked totalDiscount =
+    JSON.parse(localStorage.getItem('totalDiscount')) || 0;
+  @tracked totalPayable = JSON.parse(localStorage.getItem('totalPayable')) || 0;
 
   @action
   updateCart() {
@@ -17,6 +19,7 @@ export default class CartService extends Service {
     this.totalPayable = this.calculateTotalPayable();
     this.quantity = this.calculateTotalQuantity();
     this.items = [...this.items];
+    this.saveToLocalStorage();
   }
 
   calculateSubtotal() {
@@ -94,6 +97,7 @@ export default class CartService extends Service {
     }
 
     this.updateCart();
+    this.saveToLocalStorage();
   }
 
   @action
@@ -127,6 +131,7 @@ export default class CartService extends Service {
     }
 
     this.updateCart();
+    this.saveToLocalStorage();
   }
 
   @action
@@ -146,10 +151,20 @@ export default class CartService extends Service {
     }
 
     this.updateCart();
+    this.saveToLocalStorage();
   }
 
   getItemQuantity(product) {
     const cartItem = this.items.find((item) => item.product.id === product.id);
     return cartItem ? cartItem.quantity : 0;
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem('cartItems', JSON.stringify(this.items));
+    localStorage.setItem('shippingCost', JSON.stringify(this.shippingCost));
+    localStorage.setItem('quantity', JSON.stringify(this.quantity));
+    localStorage.setItem('subtotal', JSON.stringify(this.subtotal));
+    localStorage.setItem('totalDiscount', JSON.stringify(this.totalDiscount));
+    localStorage.setItem('totalPayable', JSON.stringify(this.totalPayable));
   }
 }
