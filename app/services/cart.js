@@ -3,7 +3,6 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class CartService extends Service {
-  
   @tracked items = JSON.parse(localStorage.getItem('cartItems')) || [];
   @tracked shippingCost = JSON.parse(localStorage.getItem('shippingCost')) || 0;
   @tracked quantity = JSON.parse(localStorage.getItem('quantity')) || 0;
