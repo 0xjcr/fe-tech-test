@@ -16,7 +16,6 @@ export default class ProductComponent extends Component {
   addToCart() {
     this.cart.add(this.args.product);
     this.updateQuantity();
-    
   }
 
   @action
