@@ -1,23 +1,26 @@
-<div
+<div data-test-product-card
   class="w-[352px] relative bg-white border border-gray-100 rounded-lg shadow-sm"
+  
 >
 
-  <img
+  <img data-test-product-image
     class="object-cover object-center h-[260px] rounded-t-lg"
     src="{{@product.image}}"
     alt="{{@product.name}}"
+    
   />
 
   <div class="absolute top-4 right-4">
-    <Offer @product={{@product}} />
+    <Offer @product={{@product}} 
+    />
   </div>
 
   <div class="flex p-4 rounded-b-lg h-[103px] justify-between">
     <div class="flex flex-col justify-between flex-grow">
-      <div
+      <div data-test-product-name
         class="text-xl font-bold leading-7 text-gray-800"
       >{{@product.name}}</div>
-      <div class="text-xl font-normal leading-7 text-gray-800">{{format-currency
+      <div data-test-product-price class="text-xl font-normal leading-7 text-gray-800">{{format-currency
           @product.price
         }}</div>
     </div>
@@ -25,10 +28,9 @@
     <div class="flex items-end">
       {{#if (eq this.quantity 0)}}
         <AddToCart @addToCart={{this.addToCart}} 
-        class="add-to-cart-button"
         />
       {{else}}
-        <QuantitySelector
+        <QuantitySelector 
           @quantity={{this.quantity}}
           @incrementQuantity={{this.incrementQuantity}}
           @decrementQuantity={{this.decrementQuantity}}

@@ -1,15 +1,16 @@
-<div class="flex items-center justify-between font-bold rounded-lg text-violet-700 bg-violet-50 w-[117px] h-[40px] whitespace-nowrap shadow-sm px-2">
+<div data-test-quantity-selector class="flex items-center justify-between font-bold rounded-lg text-violet-700 bg-violet-50 w-[117px] h-[40px] whitespace-nowrap shadow-sm px-2">
   {{#if (eq @quantity 1)}}
-    <button type="button" class="w-6 h-6" {{on "click" @decrementQuantity}}>
+    <button data-test-quantity-selector-trashbin type="button" class="w-6 h-6" {{on "click" @decrementQuantity}}>
       <HeroIcon class="w-6 h-6 text-violet-700" @icon="trash" @type="outline" />
     </button>
   {{else}}
-    <button type="button" class="w-6 h-6" {{on "click" @decrementQuantity}}>
+    <button 
+    data-test-quantity-selector-minus type="button" class="w-6 h-6" {{on "click" @decrementQuantity}}>
       <HeroIcon class="w-6 h-6 text-violet-700" @icon="minus" @type="outline" />
     </button>
   {{/if}}
-  <span class="mx-2">{{@quantity}}</span>
-  <button type="button" class="w-6 h-6" {{on "click" @incrementQuantity}}>
+  <span data-test-quantity-selector-quantity class="mx-2">{{@quantity}}</span>
+  <button data-test-quantity-selector-plus type="button" class="w-6 h-6" {{on "click" @incrementQuantity}}>
     <HeroIcon class="w-6 h-6 text-violet-700" @icon="plus" @type="outline" />
   </button>
 </div>
