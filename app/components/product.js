@@ -15,20 +15,20 @@ export default class ProductComponent extends Component {
   @action
   addToCart() {
     this.cart.add(this.args.product);
-    this.updateQuantity(); // Update the quantity value after adding to the cart
-    console.log('addtocart', this.cart.getItemQuantity(this.args.product));
+    this.updateQuantity(); 
+    
   }
 
   @action
   incrementQuantity() {
     this.cart.add(this.args.product);
-    this.updateQuantity(); // Update the quantity value after incrementing
+    this.updateQuantity(); 
   }
 
   @action
   decrementQuantity() {
     this.cart.decrementQuantity(this.args.product);
-    this.updateQuantity(); // Update the quantity value after decrementing
+    this.updateQuantity(); 
   }
 
   updateQuantity() {
