@@ -141,10 +141,7 @@ export default class CartService extends Service {
     }
 
     if (cartItem.quantity === 0) {
-      const index = this.items.indexOf(cartItem);
-      if (index !== -1) {
-        this.items.splice(index, 1);
-      }
+      this.items = this.items.filter((item) => item.product.id !== product.id);
     }
 
     this.updateCart();
